@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: load-generator
+  labels:
+    purpose: demonstrate-wget
+  namespace: app1
+spec:
+  containers:
+  - name: busybox
+    image: busybox:1.28
+    command: ["/bin/sh", "-c"]
+    args: ["while sleep 0.01; do wget -q -O- http://php-apache; done"]
+  restartPolicy: Never
+
